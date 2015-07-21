@@ -24,6 +24,17 @@
             }
         }
 
+        public Vector Negate()
+        {
+            int size = this.elements.Length;
+            double[] newelements = new double[size];
+
+            for (int k = 0; k < size; k++)
+                newelements[k] = -this.elements[k];
+
+            return new Vector(newelements);
+        }
+
         public Vector Add(Vector vector)
         {
             int size = this.elements.Length;
