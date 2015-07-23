@@ -69,5 +69,15 @@
             Assert.AreEqual(-2.0, elements[1]);
             Assert.AreEqual(-3.0, elements[2]);
         }
+
+        [TestMethod]
+        public void SimpleInnerProduct()
+        {
+            Vector vector1 = new Vector(new double[] { 1.0, 2.0, 3.0 });
+            Vector vector2 = new Vector(new double[] { 4.0, 5.0, 6.0 });
+
+            double result = vector1.InnerProduct(vector2);
+            Assert.AreEqual(1.0 * 4.0 + 2.0 * 5.0 + 3.0 * 6.0, result);
+        }
     }
 }

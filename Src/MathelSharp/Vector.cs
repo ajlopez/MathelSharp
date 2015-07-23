@@ -56,5 +56,16 @@
 
             return new Vector(newelements);
         }
+
+        public double InnerProduct(Vector vector)
+        {
+            double result = 0.0;
+            int size = this.elements.Length;
+
+            for (int k = 0; k < size; k++)
+                result += this.elements[k] * vector.elements[k];
+
+            return result;
+        }
     }
 }
