@@ -16,11 +16,13 @@
 
         public int Size { get { return this.elements.Length; } }
 
-        public IList<double> Elements
+        public double[] Elements
         {
             get
             {
-                return new List<double>(this.elements);
+                double[] result = new double[this.elements.Length];
+                Array.Copy(this.elements, result, result.Length);
+                return result;
             }
         }
 
