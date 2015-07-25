@@ -23,5 +23,24 @@
             Assert.AreEqual(3.0, elements[1][0]);
             Assert.AreEqual(4.0, elements[1][1]);
         }
+
+        [TestMethod]
+        public void ElementsIsACopy()
+        {
+            Matrix matrix = new Matrix(new double[][] { new double[] { 1.0, 2.0 }, new double[] { 3.0, 4.0 } });
+
+            var elements = matrix.Elements;
+
+            for (int k = 0; k < 2; k++)
+                for (int j = 0; j < 2; j++)
+                    elements[k][j]++;
+
+            var elements2 = matrix.Elements;
+
+            Assert.AreEqual(1.0, elements2[0][0]);
+            Assert.AreEqual(2.0, elements2[0][1]);
+            Assert.AreEqual(3.0, elements2[1][0]);
+            Assert.AreEqual(4.0, elements2[1][1]);
+        }
     }
 }

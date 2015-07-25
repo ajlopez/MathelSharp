@@ -19,6 +19,20 @@
 
         public int Size { get { return this.elements.Length * this.elements[0].Length; } }
 
-        public double[][] Elements { get { return this.elements; } }
+        public double[][] Elements { 
+            get 
+            {
+                double[][] newelements;
+
+                newelements = new double[this.elements.Length][];
+
+                for (int k = 0; k < this.elements.Length; k++) {
+                    newelements[k] = new double[this.elements[k].Length];
+                    Array.Copy(this.elements[k], newelements[k], newelements[k].Length);
+                }
+
+                return newelements; 
+            }
+        }
     }
 }
