@@ -24,6 +24,26 @@
         }
 
         [TestMethod]
+        public void ElementsIsACopy()
+        {
+            Vector vector = new Vector(new double[] { 1.0, 2.0, 3.0 });
+
+            Assert.AreEqual(3, vector.Size);
+
+            var elements = vector.Elements;
+
+            elements[0]++;
+            elements[1]++;
+            elements[2]++;
+
+            var elements2 = vector.Elements;
+
+            Assert.AreEqual(1.0, elements2[0]);
+            Assert.AreEqual(2.0, elements2[1]);
+            Assert.AreEqual(3.0, elements2[2]);
+        }
+
+        [TestMethod]
         public void SimpleAdd()
         {
             Vector vector1 = new Vector(new double[] { 1.0, 2.0, 3.0 });
