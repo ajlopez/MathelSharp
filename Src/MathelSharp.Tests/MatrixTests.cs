@@ -42,5 +42,22 @@
             Assert.AreEqual(3.0, elements2[1][0]);
             Assert.AreEqual(4.0, elements2[1][1]);
         }
+
+        [TestMethod]
+        public void Negate()
+        {
+            Matrix matrix = new Matrix(new double[][] { new double[] { 1.0, 2.0 }, new double[] { 3.0, 4.0 } });
+
+            Matrix result = matrix.Negate();
+
+            Assert.AreEqual(4, result.Size);
+
+            var elements = result.Elements;
+
+            Assert.AreEqual(-1.0, elements[0][0]);
+            Assert.AreEqual(-2.0, elements[0][1]);
+            Assert.AreEqual(-3.0, elements[1][0]);
+            Assert.AreEqual(-4.0, elements[1][1]);
+        }
     }
 }
