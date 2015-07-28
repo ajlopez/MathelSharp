@@ -65,5 +65,20 @@
 
             return new Matrix(newelements);
         }
+
+        public Matrix Subtract(Matrix matrix)
+        {
+            double[][] newelements = new double[this.Elements.Length][];
+
+            for (int k = 0; k < newelements.Length; k++)
+            {
+                newelements[k] = new double[this.elements[k].Length];
+
+                for (int j = 0; j < this.elements[k].Length; j++)
+                    newelements[k][j] = this.elements[k][j] - matrix.elements[k][j];
+            }
+
+            return new Matrix(newelements);
+        }
     }
 }
