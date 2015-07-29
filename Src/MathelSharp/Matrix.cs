@@ -80,5 +80,27 @@
 
             return new Matrix(newelements);
         }
+
+        public Matrix Multiply(Matrix matrix)
+        {
+            double[][] newelements = new double[this.Elements.Length][];
+
+            for (int k = 0; k < newelements.Length; k++)
+            {
+                newelements[k] = new double[matrix.elements[k].Length];
+
+                for (int j = 0; j < matrix.elements[0].Length; j++)
+                {
+                    double sum = 0.0;
+
+                    for (int l = 0; l < this.elements[k].Length; l++)
+                        sum += this.elements[k][l] * matrix.elements[l][j];
+
+                    newelements[k][j] = sum;
+                }
+            }
+
+            return new Matrix(newelements);
+        }
     }
 }
