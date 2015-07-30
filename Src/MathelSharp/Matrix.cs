@@ -102,5 +102,44 @@
 
             return new Matrix(newelements);
         }
+
+        public double Determinant()
+        {
+            bool[] columns = new bool[this.elements[0].Length];
+            int size = 0;
+
+            return Determinant(size, columns);
+        }
+
+        private double Determinant(int size, bool[] columns)
+        {
+            int ncolumn = 0;
+            int ncols = this.elements[0].Length;
+            bool last = size + 1 >= ncols;
+
+            double result = 0.0;
+
+            for (int k = 0; k < ncols; k++)
+            {
+                if (columns[k])
+                    continue;
+
+                if (last)
+                    return this.elements[size][k];
+
+                columns[k] = true;
+                double value = this.Determinant(size + 1, columns) * this.elements[size][k];
+                columns[k] = false;
+
+                if ((size + k) % 2 == 1)
+                    value = -value;
+
+                result += value;
+
+                ncolumn++;
+            }
+
+            return result;
+        }
     }
 }

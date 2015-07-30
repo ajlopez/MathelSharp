@@ -113,5 +113,15 @@
             Assert.AreEqual(3.0 * 5.0 + 4.0 * 7.0, elements[1][0]);
             Assert.AreEqual(3.0 * 6.0 + 4.0 * 8.0, elements[1][1]);
         }
+
+        [TestMethod]
+        public void Determinant()
+        {
+            Matrix matrix = new Matrix(new double[][] { new double[] { 1.0, 2.0 }, new double[] { 3.0, 4.0 } });
+
+            double result = matrix.Determinant();
+
+            Assert.AreEqual(1.0 * 4.0 - 2.0 * 3.0, result);
+        }
     }
 }
