@@ -26,6 +26,11 @@
             }
         }
 
+        public double GetElement(int n)
+        {
+            return this.elements[n];
+        }
+
         public Vector Negate()
         {
             int size = this.elements.Length;
