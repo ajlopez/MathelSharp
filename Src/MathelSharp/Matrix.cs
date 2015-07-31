@@ -24,14 +24,16 @@
 
         public int Size { get { return this.elements.Length * this.elements[0].Length; } }
 
-        public double[][] Elements { 
+        public double[][] Elements 
+        { 
             get 
             {
                 double[][] newelements;
 
                 newelements = new double[this.elements.Length][];
 
-                for (int k = 0; k < this.elements.Length; k++) {
+                for (int k = 0; k < this.elements.Length; k++)
+                {
                     newelements[k] = new double[this.elements[k].Length];
                     Array.Copy(this.elements[k], newelements[k], newelements[k].Length);
                 }
@@ -108,7 +110,7 @@
             bool[] columns = new bool[this.elements[0].Length];
             int size = 0;
 
-            return Determinant(size, columns);
+            return this.Determinant(size, columns);
         }
 
         private double Determinant(int size, bool[] columns)

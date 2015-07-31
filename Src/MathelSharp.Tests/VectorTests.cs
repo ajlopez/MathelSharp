@@ -97,7 +97,7 @@
             Vector vector2 = new Vector(new double[] { 4.0, 5.0, 6.0 });
 
             double result = vector1.InnerProduct(vector2);
-            Assert.AreEqual(1.0 * 4.0 + 2.0 * 5.0 + 3.0 * 6.0, result);
+            Assert.AreEqual((1.0 * 4.0) + (2.0 * 5.0) + (3.0 * 6.0), result);
         }
     }
 }
