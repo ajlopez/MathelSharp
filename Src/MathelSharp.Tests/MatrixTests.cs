@@ -25,6 +25,19 @@
         }
 
         [TestMethod]
+        public void GetElement()
+        {
+            Matrix matrix = new Matrix(new double[][] { new double[] { 1.0, 2.0 }, new double[] { 3.0, 4.0 } });
+
+            Assert.AreEqual(4, matrix.Size);
+
+            Assert.AreEqual(1.0, matrix.GetElement(0, 0));
+            Assert.AreEqual(2.0, matrix.GetElement(0, 1));
+            Assert.AreEqual(3.0, matrix.GetElement(1, 0));
+            Assert.AreEqual(4.0, matrix.GetElement(1, 1));
+        }
+
+        [TestMethod]
         public void ElementsIsACopy()
         {
             Matrix matrix = new Matrix(new double[][] { new double[] { 1.0, 2.0 }, new double[] { 3.0, 4.0 } });

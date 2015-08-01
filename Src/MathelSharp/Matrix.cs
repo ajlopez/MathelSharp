@@ -42,6 +42,11 @@
             }
         }
 
+        public double GetElement(int nrow, int ncol)
+        {
+            return this.elements[nrow][ncol];
+        }
+
         public Matrix Negate()
         {
             var newelements = this.Elements;
