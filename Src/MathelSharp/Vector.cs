@@ -74,5 +74,35 @@
 
             return result;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Vector))
+                return false;
+
+            Vector vector = (Vector)obj;
+
+            if (this.elements.Length != vector.elements.Length)
+                return false;
+
+            for (int k = 0; k < this.elements.Length; k++)
+                if (this.elements[k] != vector.elements[k])
+                    return false;
+
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            int result = this.elements.Length.GetHashCode();
+
+            for (int k = 0; k < this.elements.Length; k++)
+            {
+                result *= 17;
+                result += this.elements[k].GetHashCode();
+            }
+
+            return result;
+        }
     }
 }

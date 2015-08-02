@@ -36,6 +36,29 @@
         }
 
         [TestMethod]
+        public void EqualsAndHashCode()
+        {
+            Vector vector1 = new Vector(new double[] { 1.0, 2.0, 3.0 });
+            Vector vector2 = new Vector(new double[] { 1.0, 2.0, 3.0 });
+            Vector vector3 = new Vector(new double[] { 1.0, 2.0, 3.0, 4.0 });
+            Vector vector4 = new Vector(new double[] { 1.0, 2.0, 4.0 });
+
+            Assert.IsTrue(vector1.Equals(vector2));
+            Assert.IsTrue(vector2.Equals(vector1));
+
+            Assert.AreEqual(vector2.GetHashCode(), vector1.GetHashCode());
+
+            Assert.IsFalse(vector1.Equals(vector3));
+            Assert.IsFalse(vector1.Equals(vector4));
+            Assert.IsFalse(vector3.Equals(vector1));
+            Assert.IsFalse(vector4.Equals(vector1));
+
+            Assert.IsFalse(vector1.Equals(null));
+            Assert.IsFalse(vector1.Equals(42));
+            Assert.IsFalse(vector1.Equals("foo"));
+        }
+
+        [TestMethod]
         public void ElementsIsACopy()
         {
             Vector vector = new Vector(new double[] { 1.0, 2.0, 3.0 });
