@@ -118,6 +118,40 @@
             return this.Determinant(size, columns);
         }
 
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Matrix))
+                return false;
+
+            Matrix matrix = (Matrix)obj;
+
+            if (this.elements.Length != matrix.elements.Length)
+                return false;
+            if (this.elements[0].Length != matrix.elements[0].Length)
+                return false;
+
+            for (int k = 0; k < this.elements.Length; k++)
+                for (int j = 0; j < this.elements[0].Length; j++)
+                    if (this.elements[k][j] != matrix.elements[k][j])
+                        return false;
+
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            int result = this.elements.Length.GetHashCode() + 17 * this.elements[0].Length.GetHashCode();
+
+            for (int k = 0; k < this.elements.Length; k++)
+                for (int j = 0; j < this.elements[0].Length; j++)
+                {
+                    result *= 17;
+                    result += this.elements[k][j].GetHashCode();
+                }
+
+            return result;
+        }
+
         private double Determinant(int size, bool[] columns)
         {
             int ncolumn = 0;

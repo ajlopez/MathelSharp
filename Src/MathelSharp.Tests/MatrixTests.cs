@@ -38,6 +38,29 @@
         }
 
         [TestMethod]
+        public void EqualsAndHashCode()
+        {
+            Matrix matrix1 = new Matrix(new double[][] { new double[] { 1.0, 2.0 }, new double[] { 3.0, 4.0 } });
+            Matrix matrix2 = new Matrix(new double[][] { new double[] { 1.0, 2.0 }, new double[] { 3.0, 4.0 } });
+            Matrix matrix3 = new Matrix(new double[][] { new double[] { 1.0, 2.0 }, new double[] { 3.0, 5.0 } });
+            Matrix matrix4 = new Matrix(new double[][] { new double[] { 1.0, 2.0, 3.0 }, new double[] { 3.0, 4.0, 5.0 } });
+
+            Assert.IsTrue(matrix1.Equals(matrix2));
+            Assert.IsTrue(matrix2.Equals(matrix1));
+
+            Assert.AreEqual(matrix2.GetHashCode(), matrix1.GetHashCode());
+
+            Assert.IsFalse(matrix1.Equals(matrix3));
+            Assert.IsFalse(matrix1.Equals(matrix4));
+            Assert.IsFalse(matrix3.Equals(matrix1));
+            Assert.IsFalse(matrix4.Equals(matrix1));
+
+            Assert.IsFalse(matrix1.Equals(null));
+            Assert.IsFalse(matrix1.Equals(42));
+            Assert.IsFalse(matrix1.Equals("foo"));
+        }
+
+        [TestMethod]
         public void ElementsIsACopy()
         {
             Matrix matrix = new Matrix(new double[][] { new double[] { 1.0, 2.0 }, new double[] { 3.0, 4.0 } });
