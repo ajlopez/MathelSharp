@@ -140,7 +140,7 @@
 
         public override int GetHashCode()
         {
-            int result = this.elements.Length.GetHashCode() + 17 * this.elements[0].Length.GetHashCode();
+            int result = this.elements.Length.GetHashCode() + (17 * this.elements[0].Length.GetHashCode());
 
             for (int k = 0; k < this.elements.Length; k++)
                 for (int j = 0; j < this.elements[0].Length; j++)
