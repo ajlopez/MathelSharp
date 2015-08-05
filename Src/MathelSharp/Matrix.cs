@@ -9,12 +9,30 @@
     {
         private double[][] elements;
 
+        public static Matrix Unity(int nrows)
+        {
+            double[][] elements = new double[nrows][];
+
+            for (int k = 0; k < nrows; k++)
+            {
+                elements[k] = new double[nrows];
+                elements[k][k] = 1.0;
+            }
+
+            return new Matrix(elements, true);
+        }
+
         public Matrix(IList<IList<double>> elements)
         {
             this.elements = new double[elements.Count][];
 
             for (int k = 0; k < elements.Count; k++)
                 this.elements[k] = elements[k].ToArray();
+        }
+
+        private Matrix(double[][] elements, Boolean nocopy)
+        {
+            this.elements = elements;
         }
 
         private Matrix(double[][] elements)
@@ -127,6 +145,7 @@
 
             if (this.elements.Length != matrix.elements.Length)
                 return false;
+
             if (this.elements[0].Length != matrix.elements[0].Length)
                 return false;
 
