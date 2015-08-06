@@ -32,7 +32,15 @@
 
         private Matrix(double[][] elements, Boolean nocopy)
         {
-            this.elements = elements;
+            if (nocopy)
+                this.elements = elements;
+            else
+            {
+                this.elements = new double[elements.Length][];
+
+                for (int k = 0; k < elements.Length; k++)
+                    this.elements[k] = elements[k].ToArray();
+            }
         }
 
         private Matrix(double[][] elements)
