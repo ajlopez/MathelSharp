@@ -8,20 +8,22 @@
     public class Vector
     {
         private double[] elements;
+        private int size;
 
         public Vector(IList<double> elements)
         {
             this.elements = elements.ToArray();
+            this.size = this.elements.Length;
         }
 
-        public int Size { get { return this.elements.Length; } }
+        public int Size { get { return this.size; } }
 
         public double[] Elements
         {
             get
             {
-                double[] result = new double[this.elements.Length];
-                Array.Copy(this.elements, result, result.Length);
+                double[] result = new double[this.size];
+                Array.Copy(this.elements, result, this.size);
                 return result;
             }
         }
@@ -33,10 +35,9 @@
 
         public Vector Negate()
         {
-            int size = this.elements.Length;
-            double[] newelements = new double[size];
+            double[] newelements = new double[this.size];
 
-            for (int k = 0; k < size; k++)
+            for (int k = 0; k < this.size; k++)
                 newelements[k] = -this.elements[k];
 
             return new Vector(newelements);
@@ -44,10 +45,9 @@
 
         public Vector Add(Vector vector)
         {
-            int size = this.elements.Length;
-            double[] newelements = new double[size];
+            double[] newelements = new double[this.size];
 
-            for (int k = 0; k < size; k++)
+            for (int k = 0; k < this.size; k++)
                 newelements[k] = this.elements[k] + vector.elements[k];
 
             return new Vector(newelements);
@@ -55,10 +55,9 @@
 
         public Vector Subtract(Vector vector)
         {
-            int size = this.elements.Length;
-            double[] newelements = new double[size];
+            double[] newelements = new double[this.size];
 
-            for (int k = 0; k < size; k++)
+            for (int k = 0; k < this.size; k++)
                 newelements[k] = this.elements[k] - vector.elements[k];
 
             return new Vector(newelements);
@@ -67,9 +66,8 @@
         public double InnerProduct(Vector vector)
         {
             double result = 0.0;
-            int size = this.elements.Length;
 
-            for (int k = 0; k < size; k++)
+            for (int k = 0; k < this.size; k++)
                 result += this.elements[k] * vector.elements[k];
 
             return result;
@@ -82,10 +80,10 @@
 
             Vector vector = (Vector)obj;
 
-            if (this.elements.Length != vector.elements.Length)
+            if (this.size != vector.size)
                 return false;
 
-            for (int k = 0; k < this.elements.Length; k++)
+            for (int k = 0; k < this.size; k++)
                 if (this.elements[k] != vector.elements[k])
                     return false;
 
@@ -94,9 +92,9 @@
 
         public override int GetHashCode()
         {
-            int result = this.elements.Length.GetHashCode();
+            int result = this.size.GetHashCode();
 
-            for (int k = 0; k < this.elements.Length; k++)
+            for (int k = 0; k < this.size; k++)
             {
                 result *= 17;
                 result += this.elements[k].GetHashCode();
