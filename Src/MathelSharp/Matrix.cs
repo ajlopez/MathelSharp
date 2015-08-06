@@ -10,22 +10,19 @@
         private double[][] elements;
 
         public Matrix(IList<IList<double>> elements)
+            : this(elements, false)
         {
-            this.elements = new double[elements.Count][];
-
-            for (int k = 0; k < elements.Count; k++)
-                this.elements[k] = elements[k].ToArray();
         }
 
-        private Matrix(double[][] elements, bool nocopy)
+        private Matrix(IList<IList<double>> elements, bool nocopy)
         {
-            if (nocopy)
-                this.elements = elements;
+            if (nocopy && elements is double[][])
+                this.elements = (double[][])elements;
             else
             {
-                this.elements = new double[elements.Length][];
+                this.elements = new double[elements.Count][];
 
-                for (int k = 0; k < elements.Length; k++)
+                for (int k = 0; k < elements.Count; k++)
                     this.elements[k] = elements[k].ToArray();
             }
         }
