@@ -8,6 +8,8 @@
     public class Matrix
     {
         private double[][] elements;
+        private int nrows;
+        private int ncols;
 
         public Matrix(IList<IList<double>> elements)
             : this(elements, false)
@@ -25,11 +27,17 @@
                 for (int k = 0; k < elements.Count; k++)
                     this.elements[k] = elements[k].ToArray();
             }
+
+            this.nrows = this.elements.Length;
+            this.ncols = this.elements[0].Length;
         }
 
         private Matrix(double[][] elements)
         {
             this.elements = elements;
+
+            this.nrows = this.elements.Length;
+            this.ncols = this.elements[0].Length;
         }
 
         public int Size { get { return this.elements.Length * this.elements[0].Length; } }
@@ -40,12 +48,12 @@
             {
                 double[][] newelements;
 
-                newelements = new double[this.elements.Length][];
+                newelements = new double[this.nrows][];
 
-                for (int k = 0; k < this.elements.Length; k++)
+                for (int k = 0; k < this.nrows; k++)
                 {
                     newelements[k] = new double[this.elements[k].Length];
-                    Array.Copy(this.elements[k], newelements[k], newelements[k].Length);
+                    Array.Copy(this.elements[k], newelements[k], this.ncols);
                 }
 
                 return newelements; 
@@ -74,8 +82,8 @@
         {
             var newelements = this.Elements;
 
-            for (int k = 0; k < newelements.Length; k++)
-                for (int j = 0; j < newelements[k].Length; j++)
+            for (int k = 0; k < this.nrows; k++)
+                for (int j = 0; j < this.ncols; j++)
                     newelements[k][j] = -newelements[k][j];
 
             return new Matrix(newelements);
@@ -83,13 +91,13 @@
 
         public Matrix Add(Matrix matrix)
         {
-            double[][] newelements = new double[this.Elements.Length][];
+            double[][] newelements = new double[this.nrows][];
 
-            for (int k = 0; k < newelements.Length; k++)
+            for (int k = 0; k < this.nrows; k++)
             {
-                newelements[k] = new double[this.elements[k].Length];
+                newelements[k] = new double[this.ncols];
 
-                for (int j = 0; j < this.elements[k].Length; j++)
+                for (int j = 0; j < this.ncols; j++)
                     newelements[k][j] = this.elements[k][j] + matrix.elements[k][j];
             }
 
@@ -98,13 +106,13 @@
 
         public Matrix Subtract(Matrix matrix)
         {
-            double[][] newelements = new double[this.Elements.Length][];
+            double[][] newelements = new double[this.nrows][];
 
-            for (int k = 0; k < newelements.Length; k++)
+            for (int k = 0; k < this.nrows; k++)
             {
-                newelements[k] = new double[this.elements[k].Length];
+                newelements[k] = new double[this.ncols];
 
-                for (int j = 0; j < this.elements[k].Length; j++)
+                for (int j = 0; j < this.ncols; j++)
                     newelements[k][j] = this.elements[k][j] - matrix.elements[k][j];
             }
 
@@ -113,17 +121,17 @@
 
         public Matrix Multiply(Matrix matrix)
         {
-            double[][] newelements = new double[this.Elements.Length][];
+            double[][] newelements = new double[this.nrows][];
 
-            for (int k = 0; k < newelements.Length; k++)
+            for (int k = 0; k < this.nrows; k++)
             {
-                newelements[k] = new double[matrix.elements[k].Length];
+                newelements[k] = new double[matrix.ncols];
 
-                for (int j = 0; j < matrix.elements[0].Length; j++)
+                for (int j = 0; j < matrix.ncols; j++)
                 {
                     double sum = 0.0;
 
-                    for (int l = 0; l < this.elements[k].Length; l++)
+                    for (int l = 0; l < this.ncols; l++)
                         sum += this.elements[k][l] * matrix.elements[l][j];
 
                     newelements[k][j] = sum;
@@ -135,7 +143,7 @@
 
         public double Determinant()
         {
-            bool[] columns = new bool[this.elements[0].Length];
+            bool[] columns = new bool[this.ncols];
             int size = 0;
 
             return this.Determinant(size, columns);
@@ -148,14 +156,14 @@
 
             Matrix matrix = (Matrix)obj;
 
-            if (this.elements.Length != matrix.elements.Length)
+            if (this.nrows != matrix.nrows)
                 return false;
 
-            if (this.elements[0].Length != matrix.elements[0].Length)
+            if (this.ncols != matrix.ncols)
                 return false;
 
-            for (int k = 0; k < this.elements.Length; k++)
-                for (int j = 0; j < this.elements[0].Length; j++)
+            for (int k = 0; k < this.nrows; k++)
+                for (int j = 0; j < this.ncols; j++)
                     if (this.elements[k][j] != matrix.elements[k][j])
                         return false;
 
@@ -164,10 +172,10 @@
 
         public override int GetHashCode()
         {
-            int result = this.elements.Length.GetHashCode() + (17 * this.elements[0].Length.GetHashCode());
+            int result = this.nrows.GetHashCode() + (17 * this.ncols.GetHashCode());
 
-            for (int k = 0; k < this.elements.Length; k++)
-                for (int j = 0; j < this.elements[0].Length; j++)
+            for (int k = 0; k < this.nrows; k++)
+                for (int j = 0; j < this.ncols; j++)
                 {
                     result *= 17;
                     result += this.elements[k][j].GetHashCode();
@@ -179,12 +187,11 @@
         private double Determinant(int size, bool[] columns)
         {
             int ncolumn = 0;
-            int ncols = this.elements[0].Length;
-            bool last = size + 1 >= ncols;
+            bool last = size + 1 >= this.ncols;
 
             double result = 0.0;
 
-            for (int k = 0; k < ncols; k++)
+            for (int k = 0; k < this.ncols; k++)
             {
                 if (columns[k])
                     continue;
