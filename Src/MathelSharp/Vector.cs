@@ -58,6 +58,9 @@
 
         public Vector Subtract(Vector vector)
         {
+            if (this.size != vector.size)
+                throw new InvalidOperationException("Vectors have different lengths");
+
             double[] newelements = new double[this.size];
 
             for (int k = 0; k < this.size; k++)

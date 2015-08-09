@@ -59,7 +59,7 @@
         }
 
         [TestMethod]
-        public void ElementsIsACopy()
+        public void ElementsAreACopy()
         {
             Vector vector = new Vector(new double[] { 1.0, 2.0, 3.0 });
 
@@ -126,6 +126,24 @@
             Assert.AreEqual(1.0 - 4.0, elements[0]);
             Assert.AreEqual(2.0 - 5.0, elements[1]);
             Assert.AreEqual(3.0 - 6.0, elements[2]);
+        }
+
+        [TestMethod]
+        public void SubtractRaiseExceptionIfVectorsHaveDifferenteLengths()
+        {
+            Vector vector1 = new Vector(new double[] { 1.0, 2.0, 3.0 });
+            Vector vector2 = new Vector(new double[] { 4.0, 5.0, 6.0, 7.0 });
+
+            try
+            {
+                vector1.Subtract(vector2);
+                Assert.Fail();
+            }
+            catch (Exception ex)
+            {
+                Assert.IsInstanceOfType(ex, typeof(InvalidOperationException));
+                Assert.AreEqual("Vectors have different lengths", ex.Message);
+            }
         }
 
         [TestMethod]
