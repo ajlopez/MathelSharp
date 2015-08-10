@@ -71,6 +71,9 @@
 
         public double InnerProduct(Vector vector)
         {
+            if (this.size != vector.size)
+                throw new InvalidOperationException("Vectors have different lengths");
+
             double result = 0.0;
 
             for (int k = 0; k < this.size; k++)

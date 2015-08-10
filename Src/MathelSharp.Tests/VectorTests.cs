@@ -170,5 +170,23 @@
             double result = vector1.InnerProduct(vector2);
             Assert.AreEqual((1.0 * 4.0) + (2.0 * 5.0) + (3.0 * 6.0), result);
         }
+
+        [TestMethod]
+        public void InnerProductRaiseExceptionIfVectorsHaveDifferenteLengths()
+        {
+            Vector vector1 = new Vector(new double[] { 1.0, 2.0, 3.0 });
+            Vector vector2 = new Vector(new double[] { 4.0, 5.0, 6.0, 7.0 });
+
+            try
+            {
+                vector1.InnerProduct(vector2);
+                Assert.Fail();
+            }
+            catch (Exception ex)
+            {
+                Assert.IsInstanceOfType(ex, typeof(InvalidOperationException));
+                Assert.AreEqual("Vectors have different lengths", ex.Message);
+            }
+        }
     }
 }
