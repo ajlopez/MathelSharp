@@ -130,6 +130,24 @@
         }
 
         [TestMethod]
+        public void AddRaiseExceptionIfDifferentSizes()
+        {
+            Matrix matrix1 = new Matrix(new double[][] { new double[] { 1.0, 2.0 }, new double[] { 3.0, 4.0 } });
+            Matrix matrix2 = new Matrix(new double[][] { new double[] { 5.0, 6.0 }, new double[] { 7.0, 8.0 }, new double[] { 9.0, 10.0 } });
+
+            try
+            {
+                matrix1.Add(matrix2);
+                Assert.Fail();
+            }
+            catch (Exception ex)
+            {
+                Assert.IsInstanceOfType(ex, typeof(InvalidOperationException));
+                Assert.AreEqual("Matrices have different sizes", ex.Message);
+            }
+        }
+
+        [TestMethod]
         public void Subtract()
         {
             Matrix matrix1 = new Matrix(new double[][] { new double[] { 1.0, 2.0 }, new double[] { 3.0, 4.0 } });
