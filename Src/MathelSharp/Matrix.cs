@@ -109,6 +109,9 @@
 
         public Matrix Subtract(Matrix matrix)
         {
+            if (this.nrows != matrix.nrows || this.ncols != matrix.ncols)
+                throw new InvalidOperationException("Matrices have different sizes");
+
             double[][] newelements = new double[this.nrows][];
 
             for (int k = 0; k < this.nrows; k++)
