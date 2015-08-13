@@ -127,6 +127,9 @@
 
         public Matrix Multiply(Matrix matrix)
         {
+            if (this.ncols != matrix.nrows)
+                throw new InvalidOperationException("Matrices cannot be multiplied");
+
             double[][] newelements = new double[this.nrows][];
 
             for (int k = 0; k < this.nrows; k++)
