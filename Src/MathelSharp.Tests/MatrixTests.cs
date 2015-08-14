@@ -265,5 +265,22 @@
 
             Assert.AreEqual((1.0 * 4.0) - (2.0 * 3.0), result);
         }
+
+        [TestMethod]
+        public void DeterminantRaiseException()
+        {
+            Matrix matrix = new Matrix(new double[][] { new double[] { 1.0, 2.0 }, new double[] { 3.0, 4.0 }, new double[] { 5.0, 6.0 } });
+
+            try
+            {
+                matrix.Determinant();
+                Assert.Fail();
+            }
+            catch (Exception ex)
+            {
+                Assert.IsInstanceOfType(ex, typeof(InvalidOperationException));
+                Assert.AreEqual("Matrix is not square", ex.Message);
+            }
+        }
     }
 }

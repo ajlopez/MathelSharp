@@ -152,6 +152,9 @@
 
         public double Determinant()
         {
+            if (this.ncols != this.nrows)
+                throw new InvalidOperationException("Matrix is not square");
+
             bool[] columns = new bool[this.ncols];
             int size = 0;
 
