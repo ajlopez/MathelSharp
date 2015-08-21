@@ -32,14 +32,6 @@
             this.ncols = this.elements[0].Length;
         }
 
-        private Matrix(double[][] elements)
-        {
-            this.elements = elements;
-
-            this.nrows = this.elements.Length;
-            this.ncols = this.elements[0].Length;
-        }
-
         public int Size { get { return this.elements.Length * this.elements[0].Length; } }
 
         public double[][] Elements 
