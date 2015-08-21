@@ -104,7 +104,7 @@
                     newelements[k][j] = this.elements[k][j] + matrix.elements[k][j];
             }
 
-            return new Matrix(newelements);
+            return new Matrix(newelements, true);
         }
 
         public Matrix Subtract(Matrix matrix)
@@ -122,7 +122,7 @@
                     newelements[k][j] = this.elements[k][j] - matrix.elements[k][j];
             }
 
-            return new Matrix(newelements);
+            return new Matrix(newelements, true);
         }
 
         public Matrix Multiply(Matrix matrix)
@@ -147,7 +147,7 @@
                 }
             }
 
-            return new Matrix(newelements);
+            return new Matrix(newelements, true);
         }
 
         public double Determinant()
