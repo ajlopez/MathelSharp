@@ -86,7 +86,7 @@
                 for (int j = 0; j < this.ncols; j++)
                     newelements[k][j] = -newelements[k][j];
 
-            return new Matrix(newelements);
+            return new Matrix(newelements, true);
         }
 
         public Matrix Add(Matrix matrix)
