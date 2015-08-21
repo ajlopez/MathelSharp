@@ -12,21 +12,19 @@
         private int ncols;
 
         public Matrix(IList<IList<double>> elements)
-            : this(elements, false)
         {
+            this.elements = new double[elements.Count][];
+
+            for (int k = 0; k < elements.Count; k++)
+                this.elements[k] = elements[k].ToArray();
+
+            this.nrows = this.elements.Length;
+            this.ncols = this.elements[0].Length;
         }
 
-        private Matrix(IList<IList<double>> elements, bool nocopy)
+        private Matrix(double[][] elements)
         {
-            if (nocopy && elements is double[][])
-                this.elements = (double[][])elements;
-            else
-            {
-                this.elements = new double[elements.Count][];
-
-                for (int k = 0; k < elements.Count; k++)
-                    this.elements[k] = elements[k].ToArray();
-            }
+            this.elements = elements;
 
             this.nrows = this.elements.Length;
             this.ncols = this.elements[0].Length;
@@ -62,7 +60,7 @@
                 elements[k][k] = 1.0;
             }
 
-            return new Matrix(elements, true);
+            return new Matrix(elements);
         }
 
         public double GetElement(int nrow, int ncol)
@@ -78,7 +76,7 @@
                 for (int j = 0; j < this.ncols; j++)
                     newelements[k][j] = -newelements[k][j];
 
-            return new Matrix(newelements, true);
+            return new Matrix(newelements);
         }
 
         public Matrix Add(Matrix matrix)
@@ -96,7 +94,7 @@
                     newelements[k][j] = this.elements[k][j] + matrix.elements[k][j];
             }
 
-            return new Matrix(newelements, true);
+            return new Matrix(newelements);
         }
 
         public Matrix Subtract(Matrix matrix)
@@ -114,7 +112,7 @@
                     newelements[k][j] = this.elements[k][j] - matrix.elements[k][j];
             }
 
-            return new Matrix(newelements, true);
+            return new Matrix(newelements);
         }
 
         public Matrix Multiply(Matrix matrix)
@@ -139,7 +137,7 @@
                 }
             }
 
-            return new Matrix(newelements, true);
+            return new Matrix(newelements);
         }
 
         public double Determinant()
