@@ -95,6 +95,16 @@
         }
 
         [TestMethod]
+        public void SimpleMultiplyByNumber()
+        {
+            Vector vector1 = new Vector(new double[] { 1.0, 2.0, 3.0 });
+            Vector vector2 = new Vector(new double[] { 1.0 * 3.0, 2.0 * 3.0, 3.0 * 3.0 });
+
+            Vector vector = vector1.Multiply(3.0);
+            Assert.AreEqual(vector2, vector);
+        }
+
+        [TestMethod]
         public void AddRaiseExceptionIfVectorsHaveDifferenteLengths()
         {
             Vector vector1 = new Vector(new double[] { 1.0, 2.0, 3.0 });

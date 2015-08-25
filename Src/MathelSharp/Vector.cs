@@ -69,6 +69,16 @@
             return new Vector(newelements);
         }
 
+        public Vector Multiply(double number)
+        {
+            double[] newelements = new double[this.size];
+
+            for (int k = 0; k < this.size; k++)
+                newelements[k] = this.elements[k] * number;
+
+            return new Vector(newelements);
+        }
+
         public double InnerProduct(Vector vector)
         {
             if (this.size != vector.size)
