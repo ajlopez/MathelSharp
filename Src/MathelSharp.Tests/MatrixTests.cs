@@ -241,6 +241,17 @@
         }
 
         [TestMethod]
+        public void MultiplyByNumber()
+        {
+            Matrix matrix1 = new Matrix(new double[][] { new double[] { 1.0, 2.0 }, new double[] { 3.0, 4.0 } });
+            Matrix matrix2 = new Matrix(new double[][] { new double[] { 1.0 * 3.0, 2.0 * 3.0 }, new double[] { 3.0 * 3.0, 4.0 * 3.0 } });
+
+            Matrix matrix = matrix1.Multiply(3.0);
+
+            Assert.AreEqual(matrix2, matrix);
+        }
+
+        [TestMethod]
         public void MultiplyRaiseException()
         {
             Matrix matrix1 = new Matrix(new double[][] { new double[] { 1.0, 2.0 }, new double[] { 3.0, 4.0 } });

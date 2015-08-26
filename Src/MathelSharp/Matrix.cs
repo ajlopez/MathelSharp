@@ -140,6 +140,21 @@
             return new Matrix(newelements);
         }
 
+        public Matrix Multiply(double number)
+        {
+            double[][] newelements = new double[this.nrows][];
+
+            for (int k = 0; k < this.nrows; k++)
+            {
+                newelements[k] = new double[this.ncols];
+
+                for (int j = 0; j < this.ncols; j++)
+                    newelements[k][j] = this.elements[k][j] * number;
+            }
+
+            return new Matrix(newelements);
+        }
+
         public double Determinant()
         {
             if (this.ncols != this.nrows)
