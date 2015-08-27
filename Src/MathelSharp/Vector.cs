@@ -16,6 +16,15 @@
             this.size = this.elements.Length;
         }
 
+        public Vector(int size, double value)
+        {
+            this.elements = new double[size];
+            this.size = size;
+
+            for (int k = 0; k < size; k++)
+                this.elements[k] = value;
+        }
+
         public int Size { get { return this.size; } }
 
         public double[] Elements
