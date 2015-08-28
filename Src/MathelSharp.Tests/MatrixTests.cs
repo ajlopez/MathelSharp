@@ -257,11 +257,13 @@
             Matrix matrix1 = new Matrix(new double[][] { new double[] { 1.0, 2.0 }, new double[] { 3.0, 4.0 } });
             Matrix matrix2 = new Matrix(new double[][] { new double[] { 5.0, 6.0 }, new double[] { 7.0, 8.0 }, new double[] { 9.0, 10.0 } });
 
-            try {
+            try 
+            {
                 matrix1.Multiply(matrix2);
                 Assert.Fail();
             }
-            catch (Exception ex) {
+            catch (Exception ex) 
+            {
                 Assert.IsInstanceOfType(ex, typeof(InvalidOperationException));
                 Assert.AreEqual("Matrices cannot be multiplied", ex.Message);
             }
