@@ -78,6 +78,21 @@
             return new Vector(newelements);
         }
 
+        public Matrix Multiply(Vector vector)
+        {
+            double[][] newelements = new double[this.size][];
+
+            for (int k = 0; k < this.size; k++) 
+            {
+                newelements[k] = new double[vector.size];
+
+                for (int j = 0; j < vector.size; j++)
+                    newelements[k][j] = this.elements[k] * vector.elements[j];
+            }
+
+            return new Matrix(newelements);
+        }
+
         public Vector Multiply(double number)
         {
             double[] newelements = new double[this.size];

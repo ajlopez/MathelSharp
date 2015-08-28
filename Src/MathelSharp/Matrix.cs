@@ -22,7 +22,7 @@
             this.ncols = this.elements[0].Length;
         }
 
-        private Matrix(double[][] elements)
+        internal Matrix(double[][] elements)
         {
             this.elements = elements;
 

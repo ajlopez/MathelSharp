@@ -181,6 +181,17 @@
         }
 
         [TestMethod]
+        public void SimpleMultiply()
+        {
+            Vector vector1 = new Vector(new double[] { 1.0, 2.0 });
+            Vector vector2 = new Vector(new double[] { 3.0, 4.0 });
+
+            Matrix matrix = vector1.Multiply(vector2);
+
+            Assert.AreEqual(new Matrix(new double[][] { new double[] { 1.0 * 3.0, 1.0 * 4.0 }, new double[] { 2.0 * 3.0, 2.0 * 4.0 } }), matrix);
+        }
+
+        [TestMethod]
         public void SimpleInnerProduct()
         {
             Vector vector1 = new Vector(new double[] { 1.0, 2.0, 3.0 });
