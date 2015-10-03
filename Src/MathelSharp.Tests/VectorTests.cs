@@ -79,6 +79,14 @@
         }
 
         [TestMethod]
+        public void VectorToString()
+        {
+            Vector vector = new Vector(new double[] { 1.1, 2.2, 3.3 });
+
+            Assert.AreEqual("[ 1.1, 2.2, 3.3 ]", vector.ToString());
+        }
+
+        [TestMethod]
         public void SimpleAdd()
         {
             Vector vector1 = new Vector(new double[] { 1.0, 2.0, 3.0 });

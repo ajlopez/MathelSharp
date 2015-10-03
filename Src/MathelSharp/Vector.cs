@@ -145,5 +145,22 @@
 
             return result;
         }
+
+        public override string ToString()
+        {
+            string result = "[";
+
+            for (int k = 0; k < this.size; k++)
+            {
+                if (k > 0)
+                    result += ",";
+
+                result += " " + this.elements[k].ToString();
+            }
+
+            result += " ]";
+
+            return result;
+        }
     }
 }
